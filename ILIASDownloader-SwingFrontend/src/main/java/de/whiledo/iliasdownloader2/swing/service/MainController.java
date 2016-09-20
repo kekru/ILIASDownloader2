@@ -901,7 +901,7 @@ public class MainController implements SyncProgressListener, IliasSyncListener {
 	}
 
 	protected void showLicense(String licenseFile) throws IOException {
-		final JTextArea textarea = new JTextArea(IOUtils.toString(FileSync.class.getResourceAsStream("/de/whiledo/iliasdownloader2/licenses/"+licenseFile)));
+		final JTextArea textarea = new JTextArea(IOUtils.toString(FileSync.class.getResourceAsStream("/licenses/"+licenseFile)));
 
 		JPanel p = new JPanel(new BorderLayout());
 
@@ -1254,7 +1254,7 @@ public class MainController implements SyncProgressListener, IliasSyncListener {
 	}
 
 	public static ImageIcon getImage(String name){
-		return new ImageIcon(MainController.class.getResource("/de/whiledo/iliasdownloader2/swing/images/" + name));
+		return new ImageIcon(MainController.class.getResource("/images/" + name));
 	}
 
 
