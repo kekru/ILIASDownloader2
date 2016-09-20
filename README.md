@@ -1,6 +1,15 @@
 [![Build Status](https://travis-ci.org/kekru/ILIASDownloader2.svg?branch=master)](https://travis-ci.org/kekru/ILIASDownloader2)  
 # ILIASDownloader2
-Tool to download files from the ILIAS platform.
+Tool to download files from the ILIAS platform.  
+The swing GUI has got german texts, but the code is in english.  
+
+The project is divided in three parts.
++ IliasConnector  
+  base classes to find and download files from an ILIAS server
++ SyncRunner (depends on IliasConnector)  
+  simple command line app using the base classes
++ SwingFrontend (depends on SyncRunner)  
+  Swing GUI
 
 # Runnable App  
 You find the runnable java app [here](http://whiledo.de/index.php?p=iliasdownloader2) (german)
