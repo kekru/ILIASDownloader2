@@ -1,3 +1,4 @@
 /ILIASDownloader-IliasConnector/target
 /ILIASDownloader-SwingFrontend/target
 /ILIASDownloader-SyncRunner/target
+**/project-properties.properties
