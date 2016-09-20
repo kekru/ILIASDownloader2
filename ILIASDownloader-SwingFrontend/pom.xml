@@ -93,6 +93,16 @@
 		</plugins>
 	</build>
 
+	<repositories>
+		<repository>
+			<id>whiledode-snapshots</id>
+			<url>https://whiledo.de/maven/repo/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
 	<profiles>
 		<profile>
 			<id>build-runnable-swing</id>
