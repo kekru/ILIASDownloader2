@@ -1,0 +1,116 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>de.whiledo</groupId>
+	<artifactId>ILIASDownloader</artifactId>
+	<version>0.0.12-RELEASE</version>
+	<packaging>pom</packaging>
+	<modules>
+		<module>ILIASDownloader-IliasConnector</module>
+		<module>ILIASDownloader-SwingFrontend</module>
+		<module>ILIASDownloader-SyncRunner</module>
+	</modules>
+
+	<name>ILIASDownloader2</name>
+	<description>Tool to download files from the ILIAS platform.</description>
+	<url>https://github.com/kekru/ILIASDownloader2</url>
+	<inceptionYear>2016</inceptionYear>
+	<licenses>
+		<license>
+			<name>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</name>
+			<url>https://github.com/kekru/ILIASDownloader2/blob/master/LICENSE</url>
+			<distribution>repo</distribution>
+			<comments></comments>
+		</license>
+	</licenses>
+	<organization>
+		<name>Kevin Krummenauer</name>
+		<url>http://whiledo.de</url>
+	</organization>
+	<developers>
+		<developer>
+			<id>kekru</id>
+			<name>Kevin Krummenauer</name>
+			<email>kevin@whiledo.de</email>
+			<url>http://whiledo.de</url>
+			<organization></organization>
+			<organizationUrl></organizationUrl>
+			<roles>
+				<role>architect</role>
+				<role>developer</role>
+			</roles>
+			<timezone>Europe/Berlin</timezone>
+			<properties>
+				<picUrl>https://github.com/kekru</picUrl>
+			</properties>
+		</developer>
+	</developers>
+	<contributors>		
+	</contributors>
+
+
+	<distributionManagement>
+		<repository>
+			<id>${repo-id}</id>
+			<url>${repo-url}</url>
+		</repository>
+		<snapshotRepository>
+			<id>${repo-id-snapshot}</id>
+			<url>${repo-url-snapshot}</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<profiles>
+		<profile>
+			<id>profilewhiledo</id>
+			<properties>
+				<repo-id>releaseswhiledo</repo-id>
+				<repo-url>ftp://hosting9588.af958.netcup.net</repo-url>
+				<repo-id-snapshot>snapshotswhiledo</repo-id-snapshot>
+				<repo-url-snapshot>ftp://hosting9588.af958.netcup.net</repo-url-snapshot>
+			</properties>
+		</profile>
+	</profiles>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<phase>package</phase>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>attach-javadocs</id>
+							<phase>package</phase>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ftp</artifactId>
+				<version>2.5</version>
+			</extension>
+		</extensions>
+	</build>
+</project>
