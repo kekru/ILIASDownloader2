@@ -12,7 +12,9 @@ The project is divided into three parts.
   Swing GUI
 
 # Runnable App  
-You find the runnable java app [here](http://whiledo.de/index.php?p=iliasdownloader2) (german)
+You find the runnable java app [here](http://whiledo.de/index.php?p=iliasdownloader2) (german).  
+To use ILIASDownloader2 on commandline only, run `java -jar iliasdownloader.jar help` for more information.  
+There is also an Android app [here](https://play.google.com/store/apps/details?id=wennierfiete.iliasdownloader) (german).  
 
 # Create runnable App  
 Be sure that you have installed Maven.  
