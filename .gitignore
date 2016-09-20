@@ -2,3 +2,4 @@
 /ILIASDownloader-SwingFrontend/target
 /ILIASDownloader-SyncRunner/target
 **/project-properties.properties
+**/dependency-reduced-pom.xml
