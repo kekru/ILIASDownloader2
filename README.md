@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/kekru/ILIASDownloader2.svg?branch=master)](https://travis-ci.org/kekru/ILIASDownloader2)  
 # ILIASDownloader2
 Tool to download files from the ILIAS platform.
 
