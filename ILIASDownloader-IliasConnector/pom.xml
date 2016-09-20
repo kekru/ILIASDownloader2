@@ -4,10 +4,10 @@
 	<parent>
 		<groupId>de.whiledo.iliasdownloader</groupId>
 		<artifactId>ILIASDownloader</artifactId>
-		<version>0.0.12-RELEASE</version>
+		<version>0.0.13-SNAPSHOT</version>
 	</parent>
 	<artifactId>ILIASDownloader-IliasConnector</artifactId>
-	
+
 	<name>ILIASDownloader2</name>
 	<description>Backend module to download files from the ILIAS platform.</description>
 	<url>https://github.com/kekru/ILIASDownloader2/ILIASDownloader-IliasConnector</url>
@@ -42,7 +42,7 @@
 			</properties>
 		</developer>
 	</developers>
-	<contributors>		
+	<contributors>
 	</contributors>
 
 	<dependencies>
@@ -102,16 +102,13 @@
 		<repository>
 			<id>whiledode-snapshots</id>
 			<url>https://whiledo.de/maven/repo/</url>
-			
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
 		</repository>
 		<repository>
 			<id>ossrh</id>
 			<url>https://oss.sonatype.org/content/repositories/ksoap2-android-releases/</url>
-		</repository>
-		<!-- repository>Die Libraries kommen jetzt von https://whiledo.de/maven/repo/, 
-			in ksoap2-j2se-3.4.0.jar ist die HttpTransportSE entfernt worden, denn diese 
-			ist in dieses Projekt kopiert und leicht veraendert und Android Studio sag 
-			bei mehreren gleichen .class Files "multiple dex files" <id>ksoap2</id> <url>http://ksoap2-android.googlecode.com/svn/m2-repo/</url> 
-			<snapshots> <enabled>true</enabled> </snapshots> </repository -->
+		</repository>		
 	</repositories>
 </project>

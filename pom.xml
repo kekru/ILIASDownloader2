@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.whiledo.iliasdownloader</groupId>
 	<artifactId>ILIASDownloader</artifactId>
-	<version>0.0.12-RELEASE</version>
+	<version>0.0.13-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
 		<module>ILIASDownloader-IliasConnector</module>
