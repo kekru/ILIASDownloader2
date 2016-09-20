@@ -4,6 +4,12 @@ Tool to download files from the ILIAS platform.
 # Runnable App  
 You find the runnable java app [here](http://whiledo.de/index.php?p=iliasdownloader2) (german)
 
+# Create runnable App  
+Be sure that you have installed Maven.  
+Then run `mvn clean install -P build-runnable-swing` in the root directory of this project. You'll find the runnable Jar file in ILIASDownloader-SwingFrontend/target.  
+
+If you only want the SyncRunner-module to be runnable, run `mvn clean install -P build-runnable-syncrunner`.  
+
 # Getting started
 
 Add libraries to you maven dependencies or download manually from the [repo](https://whiledo.de/maven/repo/de/whiledo/iliasdownloader/).  
