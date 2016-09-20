@@ -3,7 +3,7 @@
 Tool to download files from the ILIAS platform.  
 The swing GUI has got german texts, but the code is in english.  
 
-The project is divided in three parts.
+The project is divided into three parts.
 + IliasConnector  
   base classes to find and download files from an ILIAS server
 + SyncRunner (depends on IliasConnector)  
