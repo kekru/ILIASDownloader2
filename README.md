@@ -4,9 +4,10 @@ Tool to download files from the ILIAS platform.
 # Runnable App  
 You find the runnable java app [here](http://whiledo.de/index.php?p=iliasdownloader2) (german)
 
-# Getting startet
+# Getting started
 
-Dependencies
+Add libraries to you maven dependencies or download manually from the [repo](https://whiledo.de/maven/repo/de/whiledo/iliasdownloader/).  
+```
 <project>
 	...
 	<dependencies>
@@ -16,35 +17,54 @@ Dependencies
 			<version>0.0.12-RELEASE</version>
 		</dependency>
 	</dependencies>
-
+	
 	<repositories>
 		<repository>
 			<id>whiledode-snapshots</id>
 			<url>https://whiledo.de/maven/repo/</url>
 			<snapshots><enabled>true</enabled></snapshots>
 		</repository>
-	</repositories>
+</repositories>
 </project>
+```
 
-Schnell starten
-Am bestenzuerstden ConsoleController kopieren und die ganzen System.out.println() durch die richtigen Callbackfunktionen ersetzen.
-Das Handy will man ja vermutlich nicht mit allen Dateien zumüllen, daher könntest du vorher den
-Download abschalten:iliasProperties.setAllowDownload(false);Bei syncService..startOrStopSync(); geht’sdann los und für jede Datei wird einmal fileLoadEnd(FileObject) aufgerufen.
-Um die Dateien einzeln herunterzuladen, geht dann das:syncService.getFileSync().loadFileOrExerciseIgoreDownloadFileFlag(fileObject.getXmlObject(), DownloadMethod.WEBSERVICE);
-Oder mit DownloadMethod.WEBDAV, aber dann vorher noch:if(!syncService.getIliasSoapService().isWebdavAuthenticationActive()){syncService.getIliasSoapService().enableWebdavAuthentication(„login“,“pw“);}
-Hilfe bei der Konfiguration:In den IliasProperties gibt es die iliasServerURLund den iliasClient. Der iliasClient lässt sich über IliasUtil.findClientByLoginPageOrWebserviceURL(iliasServerURL) ermittelnGrundlegende Klassen
-Die Kommunikation mit ILIAS macht der ILIASSoapService.Hier sind die Webserviceaufrufe.Die Klasse FileSync ist für das Durchlaufen der Ilias-Dateien und das Herunterladen zuständig.Beide sind in
+First of all you could copy [ConsoleController.java](https://github.com/kekru/ILIASDownloader2/blob/ff8dc846110db888d8fd6e90ca2e7bb6925a39f1/ILIASDownloader-SyncRunner/src/main/java/de/whiledo/iliasdownloader2/syncrunner/service/ConsoleController.java) and replace the System.out.println() lines with your custom callback functions.
 
+If you write a mobile app, you should disable the default download of files  
+`iliasProperties.setAllowDownload(false);`  
+
+Then you run `syncService.startOrStopSync();` to search for files and `fileLoadEnd(FileObject)` will be called for each file.  
+
+To download a file, run `syncService.getFileSync().loadFileOrExerciseIgoreDownloadFileFlag(fileObject.getXmlObject(), DownloadMethod.WEBSERVICE);`.  
+If you want to use `DownloadMethod.WEBDAV`, call the following first:
+``` 
+if(!syncService.getIliasSoapService().isWebdavAuthenticationActive()){
+	syncService.getIliasSoapService().enableWebdavAuthentication(„login“,“pw“);
+}
+``` 
+
+# Help for configuration  
+In [IliasProperties.java](https://github.com/kekru/ILIASDownloader2/blob/ff8dc846110db888d8fd6e90ca2e7bb6925a39f1/ILIASDownloader-SyncRunner/src/main/java/de/whiledo/iliasdownloader2/syncrunner/service/IliasProperties.java) you'll find `iliasServerURL` and `iliasClient`.  
+You can find out `iliasClient` by calling `IliasUtil.findClientByLoginPageOrWebserviceURL(iliasServerURL)`.  
+
+# Central classes  
+[ILIASSoapService.java](https://github.com/kekru/ILIASDownloader2/blob/ff8dc846110db888d8fd6e90ca2e7bb6925a39f1/ILIASDownloader-IliasConnector/src/main/java/de/whiledo/iliasdownloader2/service/ILIASSoapService.java) communicates with the ILIAS Server. There you find the SOAP Webservice calls.  
+
+[FileSync.java](https://github.com/kekru/ILIASDownloader2/blob/ff8dc846110db888d8fd6e90ca2e7bb6925a39f1/ILIASDownloader-IliasConnector/src/main/java/de/whiledo/iliasdownloader2/service/FileSync.java) collects the files on the ILIAS server and downloads them. You'll find both in
+```
 <dependency>
 	<groupId>de.whiledo.iliasdownloader</groupId>
 	<artifactId>ILIASDownloader-IliasConnector</artifactId>
 	<version>0.0.1-RELEASE</version>
 </dependency>
+```  
 
-Und sonst so?Für alles Weitere, einfach mal MainController.javadurchwühlen, da werden alle Funktionen benutzt, die es so gibt
-
+# How to go on?  
+Just look into [Maincontroller.java](https://github.com/kekru/ILIASDownloader2/blob/343d5cebbfd835c7fc2cd1c4efe1d14fca3f0fa4/ILIASDownloader-SwingFrontend/src/main/java/de/whiledo/iliasdownloader2/swing/service/MainController.java). This is the main class of the swing GUI and here you will find all functions that exists in the project.
+ ```
 <dependency>
 	<groupId>de.whiledo.iliasdownloader</groupId>
 	<artifactId>ILIASDownloader-SwingFrontend</artifactId>
 	<version>0.0.12-RELEASE</version>
 </dependency>
+```  
