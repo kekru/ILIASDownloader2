@@ -1,5 +1,7 @@
 description 'Sync module to download files from the ILIAS platform'
 
+apply plugin: 'maven'
+
 dependencies {
     compile project(':ilias-connector')
 
