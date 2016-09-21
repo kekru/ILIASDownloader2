@@ -1,5 +1,8 @@
-/ILIASDownloader-IliasConnector/target
-/ILIASDownloader-SwingFrontend/target
-/ILIASDownloader-SyncRunner/target
+/**/target
 **/project-properties.properties
 **/dependency-reduced-pom.xml
+.idea
+*.iml
+.settings
+.classpath
+.project
