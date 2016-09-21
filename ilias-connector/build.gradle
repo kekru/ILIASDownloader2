@@ -1,0 +1,12 @@
+
+dependencies {
+    compile 'commons-io:commons-io:2.4'
+    compile 'commons-codec:commons-codec:1.10'
+
+    // soap deps
+    compile 'com.google.code.ksoap2-android:ksoap2-android:3.6.1'
+
+    compile 'org.simpleframework:simple-xml:2.7.1'
+
+    testCompile 'junit:junit:4.12'
+}

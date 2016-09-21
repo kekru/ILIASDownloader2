@@ -1,0 +1,5 @@
+dependencies {
+    compile project(':ilias-connector')
+
+    testCompile 'junit:junit:4.12'
+}

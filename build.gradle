@@ -1,0 +1,20 @@
+
+group 'de.whiledo.iliasdownloader'
+version '0.0.13-SNAPSHOT'
+
+subprojects {
+    apply plugin: 'java'
+
+    compileJava.sourceCompatibility = 1.8
+    compileJava.targetCompatibility = 1.8
+    compileJava.options.encoding = 'utf-8'
+
+    repositories {
+        jcenter()
+        maven { url 'https://oss.sonatype.org/content/repositories/ksoap2-android-releases' }
+    }
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok:1.16.10'
+    }
+}
