@@ -1,3 +1,5 @@
+description 'Sync module to download files from the ILIAS platform'
+
 dependencies {
     compile project(':ilias-connector')
 

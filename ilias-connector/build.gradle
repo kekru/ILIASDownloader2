@@ -1,3 +1,4 @@
+description 'Backend module to download files from the ILIAS platform'
 
 dependencies {
     compile 'commons-io:commons-io:2.4'
