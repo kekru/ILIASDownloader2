@@ -11,6 +11,10 @@ subprojects {
     compileJava.targetCompatibility = 1.8
     compileJava.options.encoding = 'utf-8'
 
+    javadoc {
+        options.encoding = 'utf-8'
+    }
+
     repositories {
         jcenter()
         maven { url 'https://oss.sonatype.org/content/repositories/ksoap2-android-releases' }
