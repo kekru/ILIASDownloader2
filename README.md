@@ -16,11 +16,28 @@ You find the runnable java app [here](http://whiledo.de/index.php?p=iliasdownloa
 To use ILIASDownloader2 on commandline only, run `java -jar iliasdownloader.jar help` for more information.  
 There is also an Android app [here](https://play.google.com/store/apps/details?id=wennierfiete.iliasdownloader) (german).  
 
-# Create runnable App  
-Be sure that you have installed Maven.  
-Then run `mvn clean install -P build-runnable-swing` in the root directory of this project. You'll find the runnable Jar file in ILIASDownloader-SwingFrontend/target.  
+# Create runnable App
+To create a runnable application simply execute (without the comments):
 
-If you only want the SyncRunner-module to be runnable, run `mvn clean install -P build-runnable-syncrunner`.  
+```sh
+# under Windows
+gradlew :swing-frontend:build
+# under Linux/MacOS
+./gradlew :swing-frontend:build
+```
+
+This assumes you have installed the latest [Java Development Kit](http://www.oracle.com/technetwork/java/javase/downloads/index.html) (at least JDK 8) installed.
+
+## `SyncRunner` module
+
+If you only want the `SyncRunner` module run (without the comments):
+
+```sh
+# under Windows
+gradlew :sync-runner:build
+# under Linux/MacOS
+./gradlew :sync-runner:build
+```
 
 # Getting started
 
