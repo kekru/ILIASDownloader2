@@ -24,29 +24,46 @@ If you only want the SyncRunner-module to be runnable, run `mvn clean install -P
 
 # Getting started
 
-Add libraries to you maven dependencies or download manually from the [repo](https://whiledo.de/maven/repo/de/whiledo/iliasdownloader/).  
-```xml
-<project>
-	...
-	<dependencies>
-		<dependency>
-			<groupId>de.whiledo</groupId>
-			<artifactId>ILIASDownloader-SyncRunner</artifactId>
-			<version>0.0.12-RELEASE</version>
-		</dependency>
-	</dependencies>
-	
-	<repositories>
-		<repository>
-			<id>whiledode-snapshots</id>
-			<url>https://whiledo.de/maven/repo/</url>
-			<snapshots><enabled>true</enabled></snapshots>
-		</repository>
-</repositories>
-</project>
+Add the libraries to you Gradle/Maven dependencies or download manually from the [repo](https://whiledo.de/maven/repo/de/whiledo/iliasdownloader/).
+
+## Gradle
+```groovy
+repositories {
+    jcenter()
+    maven { url "https://jitpack.io" }
+    // required for 3rd party dependencies
+    maven { url 'https://oss.sonatype.org/content/repositories/ksoap2-android-releases' }
+}
+
+dependencies {
+    compile 'com.github.krekru:ILIASDownloader2:master-SNAPSHOT'
+}
 ```
 
-First of all you could copy [ConsoleController.java](https://github.com/kekru/ILIASDownloader2/blob/ff8dc846110db888d8fd6e90ca2e7bb6925a39f1/ILIASDownloader-SyncRunner/src/main/java/de/whiledo/iliasdownloader2/syncrunner/service/ConsoleController.java) and replace the System.out.println() lines with your custom callback functions.
+## Maven
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+    <!-- required for 3rd party dependencies -->
+    <repository>
+        <id>ossrh</id>
+        <url>https://oss.sonatype.org/content/repositories/ksoap2-android-releases/</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>com.github.krekru.ILIASDownloader2</groupId>
+        <artifactId>sync-runner</artifactId>
+        <version>master-SNAPSHOT</version>
+    </dependency>
+</dependencies>
+```
+
+First of all you could copy [ConsoleController.java](https://github.com/kekru/ILIASDownloader2/blob/ff8dc846110db888d8fd6e90ca2e7bb6925a39f1/ILIASDownloader-SyncRunner/src/main/java/de/whiledo/iliasdownloader2/syncrunner/service/ConsoleController.java) and replace the `System.out.println()` lines with your custom callback functions.
 
 If you write a mobile app, you should disable the default download of files  
 `iliasProperties.setAllowDownload(false);`  
