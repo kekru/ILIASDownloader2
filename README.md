@@ -27,7 +27,7 @@ If you only want the SyncRunner-module to be runnable, run `mvn clean install -P
 Add the libraries to you Gradle/Maven dependencies or download manually from the [repo](https://whiledo.de/maven/repo/de/whiledo/iliasdownloader/).
 
 ## Gradle
-```groovy
+```gradle
 repositories {
     jcenter()
     maven { url "https://jitpack.io" }
