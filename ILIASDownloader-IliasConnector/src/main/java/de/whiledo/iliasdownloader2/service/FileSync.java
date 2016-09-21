@@ -1,38 +1,21 @@
 package de.whiledo.iliasdownloader2.service;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-
+import de.whiledo.iliasdownloader2.exception.IliasException;
+import de.whiledo.iliasdownloader2.util.*;
+import de.whiledo.iliasdownloader2.xmlentities.exercise.XmlExercise;
+import de.whiledo.iliasdownloader2.xmlentities.filetree.XmlObject;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.val;
-
 import org.apache.commons.codec.binary.Base64InputStream;
 import org.apache.commons.io.IOUtils;
 
-import de.whiledo.iliasdownloader2.exception.IliasException;
-import de.whiledo.iliasdownloader2.util.DownloadMethod;
-import de.whiledo.iliasdownloader2.util.FileObject;
-import de.whiledo.iliasdownloader2.util.Functions;
-import de.whiledo.iliasdownloader2.util.ObjectDoInterfaceX;
-import de.whiledo.iliasdownloader2.util.SyncProgressListener;
-import de.whiledo.iliasdownloader2.util.SyncState;
-import de.whiledo.iliasdownloader2.xmlentities.exercise.XmlExercise;
-import de.whiledo.iliasdownloader2.xmlentities.filetree.XmlObject;
+import java.io.*;
+import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 @NoArgsConstructor
 public class FileSync {
@@ -136,7 +119,7 @@ public class FileSync {
 			ExecutorService taskExecutor = useThreads ? Executors.newCachedThreadPool() : null;//Runtime.getRuntime().availableProcessors()
 
 			//			List<Thread> threads = new LinkedList<Thread>();
-			for(val courseId : courseIds){
+			for(final val courseId : courseIds){
 
 				if(stopped){
 					return;
