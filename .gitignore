@@ -1,4 +1,3 @@
-/**/target
 **/project-properties.properties
 **/dependency-reduced-pom.xml
 .idea
@@ -7,3 +6,4 @@
 .classpath
 .project
 .gradle
+**/build
