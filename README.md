@@ -30,7 +30,7 @@ Add libraries to you maven dependencies or download manually from the [repo](htt
 	...
 	<dependencies>
 		<dependency>
-			<groupId>de.whiledo</groupId>
+			<groupId>de.whiledo.iliasdownloader</groupId>
 			<artifactId>ILIASDownloader-SyncRunner</artifactId>
 			<version>0.0.12-RELEASE</version>
 		</dependency>
@@ -78,7 +78,7 @@ You can find out `iliasClient` by calling `IliasUtil.findClientByLoginPageOrWebs
 ```  
 
 # How to go on?  
-Just look into [Maincontroller.java](https://github.com/kekru/ILIASDownloader2/blob/343d5cebbfd835c7fc2cd1c4efe1d14fca3f0fa4/ILIASDownloader-SwingFrontend/src/main/java/de/whiledo/iliasdownloader2/swing/service/MainController.java). This is the main class of the swing GUI and here you will find all functions that exists in the project.
+Just look into [MainController.java](https://github.com/kekru/ILIASDownloader2/blob/343d5cebbfd835c7fc2cd1c4efe1d14fca3f0fa4/ILIASDownloader-SwingFrontend/src/main/java/de/whiledo/iliasdownloader2/swing/service/MainController.java). This is the main class of the swing GUI and here you will find all functions that exists in the project.
  ```
 <dependency>
 	<groupId>de.whiledo.iliasdownloader</groupId>
