@@ -1,5 +1,5 @@
 
-group 'de.whiledo.iliasdownloader'
+group 'com.github.thetric'
 version '0.0.13-SNAPSHOT'
 
 // TODO(thetric): make `sync-runner` available via mvn/gradle
