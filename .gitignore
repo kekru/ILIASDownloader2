@@ -3,3 +3,10 @@
 /ILIASDownloader-SyncRunner/target
 **/project-properties.properties
 **/dependency-reduced-pom.xml
+.idea
+*.iml
+.settings
+.classpath
+.project
+.gradle
+**/build
