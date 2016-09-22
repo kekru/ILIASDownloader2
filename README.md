@@ -25,24 +25,23 @@ If you only want the SyncRunner-module to be runnable, run `mvn clean install -P
 # Getting started
 
 Add libraries to you maven dependencies or download manually from the [repo](https://whiledo.de/maven/repo/de/whiledo/iliasdownloader/).  
-```
+```xml
 <project>
 	...
 	<dependencies>
 		<dependency>
-			<groupId>de.whiledo.iliasdownloader</groupId>
+			<groupId>com.github.kekru.ILIASDownloader2</groupId>
 			<artifactId>ILIASDownloader-SyncRunner</artifactId>
-			<version>0.0.12-RELEASE</version>
-		</dependency>
+			<version>v0.0.12</version>
+        </dependency>
 	</dependencies>
 	
 	<repositories>
 		<repository>
-			<id>whiledode-snapshots</id>
-			<url>https://whiledo.de/maven/repo/</url>
-			<snapshots><enabled>true</enabled></snapshots>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
 		</repository>
-</repositories>
+	</repositories>
 </project>
 ```
 
@@ -69,20 +68,20 @@ You can find out `iliasClient` by calling `IliasUtil.findClientByLoginPageOrWebs
 [ILIASSoapService.java](https://github.com/kekru/ILIASDownloader2/blob/ff8dc846110db888d8fd6e90ca2e7bb6925a39f1/ILIASDownloader-IliasConnector/src/main/java/de/whiledo/iliasdownloader2/service/ILIASSoapService.java) communicates with the ILIAS Server. There you find the SOAP Webservice calls.  
 
 [FileSync.java](https://github.com/kekru/ILIASDownloader2/blob/ff8dc846110db888d8fd6e90ca2e7bb6925a39f1/ILIASDownloader-IliasConnector/src/main/java/de/whiledo/iliasdownloader2/service/FileSync.java) collects the files on the ILIAS server and downloads them. You'll find both in
-```
+```xml
 <dependency>
-	<groupId>de.whiledo.iliasdownloader</groupId>
+	<groupId>com.github.kekru.ILIASDownloader2</groupId>
 	<artifactId>ILIASDownloader-IliasConnector</artifactId>
-	<version>0.0.1-RELEASE</version>
+	<version>v0.0.12</version>
 </dependency>
 ```  
 
 # How to go on?  
 Just look into [MainController.java](https://github.com/kekru/ILIASDownloader2/blob/343d5cebbfd835c7fc2cd1c4efe1d14fca3f0fa4/ILIASDownloader-SwingFrontend/src/main/java/de/whiledo/iliasdownloader2/swing/service/MainController.java). This is the main class of the swing GUI and here you will find all functions that exists in the project.
- ```
+ ```xml
 <dependency>
-	<groupId>de.whiledo.iliasdownloader</groupId>
+	<groupId>com.github.kekru.ILIASDownloader2</groupId>
 	<artifactId>ILIASDownloader-SwingFrontend</artifactId>
-	<version>0.0.12-RELEASE</version>
+	<version>v0.0.12</version>
 </dependency>
 ```  
