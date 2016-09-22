@@ -62,9 +62,9 @@
 			<version>1.10</version>
 		</dependency>
 		<dependency>
-			<groupId>com.google.code.ksoap2-android</groupId>
+			<groupId>com.github.kekru</groupId>
 			<artifactId>ksoap2-android</artifactId>
-			<version>3.4.0</version>
+			<version>v3.6.1-useragentfix</version>
 		</dependency>
 		<dependency>
 			<groupId>org.simpleframework</groupId>
@@ -100,15 +100,8 @@
 
 	<repositories>
 		<repository>
-			<id>whiledode-snapshots</id>
-			<url>https://whiledo.de/maven/repo/</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
 		</repository>
-		<repository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/ksoap2-android-releases/</url>
-		</repository>		
 	</repositories>
 </project>
