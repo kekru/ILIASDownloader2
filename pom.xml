@@ -48,30 +48,6 @@
 	<contributors>
 	</contributors>
 
-
-	<distributionManagement>
-		<repository>
-			<id>${repo-id}</id>
-			<url>${repo-url}</url>
-		</repository>
-		<snapshotRepository>
-			<id>${repo-id-snapshot}</id>
-			<url>${repo-url-snapshot}</url>
-		</snapshotRepository>
-	</distributionManagement>
-
-	<profiles>
-		<profile>
-			<id>profilewhiledo</id>
-			<properties>
-				<repo-id>releaseswhiledo</repo-id>
-				<repo-url>ftp://hosting9588.af958.netcup.net</repo-url>
-				<repo-id-snapshot>snapshotswhiledo</repo-id-snapshot>
-				<repo-url-snapshot>ftp://hosting9588.af958.netcup.net</repo-url-snapshot>
-			</properties>
-		</profile>
-	</profiles>
-
 	<scm>
 		<connection>scm:git:git://github.com/kekru/ILIASDownloader2.git</connection>
 	</scm>
@@ -138,13 +114,5 @@
 				</executions>
 			</plugin>
 		</plugins>
-
-		<extensions>
-			<extension>
-				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-ftp</artifactId>
-				<version>2.5</version>
-			</extension>
-		</extensions>
 	</build>
 </project>
