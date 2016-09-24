@@ -24,7 +24,7 @@ If you only want the SyncRunner-module to be runnable, run `mvn clean install -P
 
 # Getting started
 
-Add libraries to you maven dependencies or download manually from the [repo](https://whiledo.de/maven/repo/de/whiledo/iliasdownloader/).  
+Add libraries to your maven dependencies.  
 ```xml
 <project>
 	...
