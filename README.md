@@ -4,11 +4,11 @@ Tool to download files from the ILIAS platform.
 The swing GUI has got german texts, but the code is in english.  
 
 The project is divided into three parts.
-+ IliasConnector  
++ IliasConnector [JavaDoc](https://jitpack.io/com/github/kekru/ILIASDownloader2/ILIASDownloader-IliasConnector/v0.0.12/javadoc/)
   base classes to find and download files from an ILIAS server
-+ SyncRunner (depends on IliasConnector)  
++ SyncRunner (depends on IliasConnector) [JavaDoc](https://jitpack.io/com/github/kekru/ILIASDownloader2/ILIASDownloader-SyncRunner/v0.0.12/javadoc/)
   simple command line app using the base classes
-+ SwingFrontend (depends on SyncRunner)  
++ SwingFrontend (depends on SyncRunner) [JavaDoc](https://jitpack.io/com/github/kekru/ILIASDownloader2/ILIASDownloader-SwingFrontend/v0.0.12/javadoc/)
   Swing GUI
 
 # Runnable App  
@@ -106,20 +106,20 @@ You can find out `iliasClient` by calling `IliasUtil.findClientByLoginPageOrWebs
 [FileSync.java](https://github.com/kekru/ILIASDownloader2/blob/ff8dc846110db888d8fd6e90ca2e7bb6925a39f1/ILIASDownloader-IliasConnector/src/main/java/de/whiledo/iliasdownloader2/service/FileSync.java) collects the files on the ILIAS server and downloads them. You'll find both in
 
 ```xml
+```xml
 <dependency>
-	<groupId>de.whiledo.iliasdownloader</groupId>
+	<groupId>com.github.kekru.ILIASDownloader2</groupId>
 	<artifactId>ILIASDownloader-IliasConnector</artifactId>
-	<version>0.0.1-RELEASE</version>
+	<version>v0.0.12</version>
 </dependency>
 ```  
 
 # How to go on?  
-Just look into [Maincontroller.java](https://github.com/kekru/ILIASDownloader2/blob/343d5cebbfd835c7fc2cd1c4efe1d14fca3f0fa4/ILIASDownloader-SwingFrontend/src/main/java/de/whiledo/iliasdownloader2/swing/service/MainController.java). This is the main class of the swing GUI and here you will find all functions that exists in the project.
-
-```xml
+Just look into [MainController.java](https://github.com/kekru/ILIASDownloader2/blob/343d5cebbfd835c7fc2cd1c4efe1d14fca3f0fa4/ILIASDownloader-SwingFrontend/src/main/java/de/whiledo/iliasdownloader2/swing/service/MainController.java). This is the main class of the swing GUI and here you will find all functions that exists in the project.
+ ```xml
 <dependency>
-	<groupId>de.whiledo.iliasdownloader</groupId>
+	<groupId>com.github.kekru.ILIASDownloader2</groupId>
 	<artifactId>ILIASDownloader-SwingFrontend</artifactId>
-	<version>0.0.12-RELEASE</version>
+	<version>v0.0.12</version>
 </dependency>
 ```  

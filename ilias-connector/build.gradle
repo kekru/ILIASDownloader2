@@ -7,7 +7,7 @@ dependencies {
     compile 'commons-codec:commons-codec:1.10'
 
     // soap deps
-    compile 'com.google.code.ksoap2-android:ksoap2-android:3.6.1'
+    compile 'com.github.kekru.ksoap2-android:ksoap2-j2se:v3.6.1-useragentfix'
 
     compile 'org.simpleframework:simple-xml:2.7.1'
 
