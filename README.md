@@ -4,11 +4,11 @@ Tool to download files from the ILIAS platform.
 The swing GUI has got german texts, but the code is in english.  
 
 The project is divided into three parts.
-+ IliasConnector [JavaDoc](https://jitpack.io/com/github/kekru/ILIASDownloader2/ILIASDownloader-IliasConnector/v0.0.12/javadoc/)  
++ IliasConnector [JavaDoc](https://jitpack.io/com/github/kekru/ILIASDownloader2/ILIASDownloader-IliasConnector/v0.0.12/javadoc/)
   base classes to find and download files from an ILIAS server
-+ SyncRunner (depends on IliasConnector) [JavaDoc](https://jitpack.io/com/github/kekru/ILIASDownloader2/ILIASDownloader-SyncRunner/v0.0.12/javadoc/)  
++ SyncRunner (depends on IliasConnector) [JavaDoc](https://jitpack.io/com/github/kekru/ILIASDownloader2/ILIASDownloader-SyncRunner/v0.0.12/javadoc/)
   simple command line app using the base classes
-+ SwingFrontend (depends on SyncRunner) [JavaDoc](https://jitpack.io/com/github/kekru/ILIASDownloader2/ILIASDownloader-SwingFrontend/v0.0.12/javadoc/)  
++ SwingFrontend (depends on SyncRunner) [JavaDoc](https://jitpack.io/com/github/kekru/ILIASDownloader2/ILIASDownloader-SwingFrontend/v0.0.12/javadoc/)
   Swing GUI
 
 # Runnable App  
@@ -16,36 +16,71 @@ You find the runnable java app [here](http://whiledo.de/index.php?p=iliasdownloa
 To use ILIASDownloader2 on commandline only, run `java -jar iliasdownloader.jar help` for more information.  
 There is also an Android app [here](https://play.google.com/store/apps/details?id=wennierfiete.iliasdownloader) (german).  
 
-# Create runnable App  
-Be sure that you have installed Maven.  
-Then run `mvn clean install -P build-runnable-swing` in the root directory of this project. You'll find the runnable Jar file in ILIASDownloader-SwingFrontend/target.  
+# Create runnable App
+To create a runnable application simply execute (without the comments):
 
-If you only want the SyncRunner-module to be runnable, run `mvn clean install -P build-runnable-syncrunner`.  
+```sh
+# under Windows
+gradlew :swing-frontend:build
+# under Linux/MacOS
+./gradlew :swing-frontend:build
+```
+
+This assumes you have installed the latest [Java Development Kit](http://www.oracle.com/technetwork/java/javase/downloads/index.html) (at least JDK 8) installed.
+
+## `SyncRunner` module
+
+If you only want the `SyncRunner` module run (without the comments):
+
+```sh
+# under Windows
+gradlew :sync-runner:build
+# under Linux/MacOS
+./gradlew :sync-runner:build
+```
 
 # Getting started
 
-Add libraries to your maven dependencies.  
-```xml
-<project>
-	...
-	<dependencies>
-		<dependency>
-			<groupId>com.github.kekru.ILIASDownloader2</groupId>
-			<artifactId>ILIASDownloader-SyncRunner</artifactId>
-			<version>v0.0.12</version>
-        </dependency>
-	</dependencies>
-	
-	<repositories>
-		<repository>
-			<id>jitpack.io</id>
-			<url>https://jitpack.io</url>
-		</repository>
-	</repositories>
-</project>
+Add the libraries to you Gradle/Maven dependencies or download manually from the [repo](https://whiledo.de/maven/repo/de/whiledo/iliasdownloader/).
+
+## Gradle
+```gradle
+repositories {
+    jcenter()
+    maven { url "https://jitpack.io" }
+    // required for 3rd party dependencies
+    maven { url 'https://oss.sonatype.org/content/repositories/ksoap2-android-releases' }
+}
+
+dependencies {
+    compile 'com.github.krekru:ILIASDownloader2:master-SNAPSHOT'
+}
 ```
 
-First of all you could copy [ConsoleController.java](https://github.com/kekru/ILIASDownloader2/blob/ff8dc846110db888d8fd6e90ca2e7bb6925a39f1/ILIASDownloader-SyncRunner/src/main/java/de/whiledo/iliasdownloader2/syncrunner/service/ConsoleController.java) and replace the System.out.println() lines with your custom callback functions.
+## Maven
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+    <!-- required for 3rd party dependencies -->
+    <repository>
+        <id>ossrh</id>
+        <url>https://oss.sonatype.org/content/repositories/ksoap2-android-releases/</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>com.github.krekru.ILIASDownloader2</groupId>
+        <artifactId>sync-runner</artifactId>
+        <version>master-SNAPSHOT</version>
+    </dependency>
+</dependencies>
+```
+
+First of all you could copy [ConsoleController.java](https://github.com/kekru/ILIASDownloader2/blob/ff8dc846110db888d8fd6e90ca2e7bb6925a39f1/ILIASDownloader-SyncRunner/src/main/java/de/whiledo/iliasdownloader2/syncrunner/service/ConsoleController.java) and replace the `System.out.println()` lines with your custom callback functions.
 
 If you write a mobile app, you should disable the default download of files  
 `iliasProperties.setAllowDownload(false);`  
@@ -54,9 +89,10 @@ Then you run `syncService.startOrStopSync();` to search for files and `fileLoadE
 
 To download a file, run `syncService.getFileSync().loadFileOrExerciseIgoreDownloadFileFlag(fileObject.getXmlObject(), DownloadMethod.WEBSERVICE);`.  
 If you want to use `DownloadMethod.WEBDAV`, call the following first:
-``` 
-if(!syncService.getIliasSoapService().isWebdavAuthenticationActive()){
-	syncService.getIliasSoapService().enableWebdavAuthentication(„login“,“pw“);
+
+```java
+if (!syncService.getIliasSoapService().isWebdavAuthenticationActive()) {
+	syncService.getIliasSoapService().enableWebdavAuthentication("login", "pw");
 }
 ``` 
 
@@ -68,6 +104,8 @@ You can find out `iliasClient` by calling `IliasUtil.findClientByLoginPageOrWebs
 [ILIASSoapService.java](https://github.com/kekru/ILIASDownloader2/blob/ff8dc846110db888d8fd6e90ca2e7bb6925a39f1/ILIASDownloader-IliasConnector/src/main/java/de/whiledo/iliasdownloader2/service/ILIASSoapService.java) communicates with the ILIAS Server. There you find the SOAP Webservice calls.  
 
 [FileSync.java](https://github.com/kekru/ILIASDownloader2/blob/ff8dc846110db888d8fd6e90ca2e7bb6925a39f1/ILIASDownloader-IliasConnector/src/main/java/de/whiledo/iliasdownloader2/service/FileSync.java) collects the files on the ILIAS server and downloads them. You'll find both in
+
+```xml
 ```xml
 <dependency>
 	<groupId>com.github.kekru.ILIASDownloader2</groupId>

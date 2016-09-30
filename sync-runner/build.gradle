@@ -1,0 +1,18 @@
+description 'Sync module to download files from the ILIAS platform'
+
+apply plugin: 'maven'
+
+dependencies {
+    compile project(':ilias-connector')
+
+    testCompile 'junit:junit:4.12'
+}
+
+jar {
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    manifest {
+        attributes(
+                'Main-Class': 'de.whiledo.iliasdownloader2.syncrunner.service.StartSyncRunner',
+        )
+    }
+}

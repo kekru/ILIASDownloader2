@@ -1,0 +1,21 @@
+description 'Frontend module to download files from the ILIAS platform'
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    compile 'de.adesso.adzubix:Adzubix:0.0.11-SNAPSHOT'
+    compile project(':ilias-connector')
+    compile project(':sync-runner')
+}
+
+repositories {
+    maven { url 'https://whiledo.de/maven/repo/' }
+}
+
+jar {
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    manifest {
+        attributes(
+            'Main-Class': 'de.whiledo.iliasdownloader2.swing.service.StartGui',
+        )
+    }
+}
