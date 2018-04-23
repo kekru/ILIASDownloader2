@@ -20,7 +20,10 @@ There is also an Android app [here](https://play.google.com/store/apps/details?i
 Be sure that you have installed Maven.  
 Then run `mvn clean install -P build-runnable-swing` in the root directory of this project. You'll find the runnable Jar file in ILIASDownloader-SwingFrontend/target.  
 
-If you only want the SyncRunner-module to be runnable, run `mvn clean install -P build-runnable-syncrunner`.  
+If you only want the SyncRunner-module to be runnable, run `mvn clean install -P build-runnable-syncrunner`. 
+
+# Install Lombok
+This project uses Project Lombok for Bytecode preprocessing. To make it work with your IDE (eclipse, IntelliJ,...), follow the steps on the [Project Lombok setup pages](https://projectlombok.org/setup/overview).   
 
 # Getting started
 
