@@ -5,10 +5,10 @@ import java.awt.Component;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
-import de.adesso.adzubix.jtablex.ModelInfo;
-import de.adesso.adzubix.jtablex.TableModelAndRendererX;
 import de.whiledo.iliasdownloader2.util.FileObject;
 import de.whiledo.iliasdownloader2.util.Functions;
+import de.whiledo.jtablex.ModelInfo;
+import de.whiledo.jtablex.TableModelAndRendererX;
 
 @ModelInfo(tableHeadlines={"Status", "Name", "Pfad", "Änderungsdatum", "Größe (MB)", "Ref Id"}, columnClasses={String.class, String.class, String.class, long.class, double.class, long.class})
 public class FileObjectTableModel extends TableModelAndRendererX<FileObject> {

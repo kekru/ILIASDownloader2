@@ -19,10 +19,10 @@ import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-import lombok.Getter;
-import de.adesso.adzubix.jtablex.JTableX;
 import de.whiledo.iliasdownloader2.swing.util.StatusCount;
 import de.whiledo.iliasdownloader2.util.FileObject;
+import de.whiledo.jtablex.JTableX;
+import lombok.Getter;
 
 public class MainFrame extends JFrame {
 

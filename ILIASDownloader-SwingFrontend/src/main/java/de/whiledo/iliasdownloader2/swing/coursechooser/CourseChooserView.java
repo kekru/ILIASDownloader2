@@ -12,8 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 
+import de.whiledo.jtablex.JTableX;
 import lombok.Getter;
-import de.adesso.adzubix.jtablex.JTableX;
 
 public class CourseChooserView extends JPanel {
 

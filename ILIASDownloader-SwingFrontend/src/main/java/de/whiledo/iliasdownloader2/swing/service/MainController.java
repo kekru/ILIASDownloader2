@@ -64,10 +64,6 @@ import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 import org.apache.commons.io.IOUtils;
 
-import de.adesso.adzubix.jtablex.JTableX;
-import de.adesso.adzubix.util.FunctionsX;
-import de.adesso.adzubix.util.ObjectDoInterface;
-import de.adesso.adzubix.util.TwoObjects;
 import de.whiledo.iliasdownloader2.exception.IliasException;
 import de.whiledo.iliasdownloader2.exception.IliasHTTPSException;
 import de.whiledo.iliasdownloader2.service.FileSync;
@@ -84,6 +80,10 @@ import de.whiledo.iliasdownloader2.util.FileObject;
 import de.whiledo.iliasdownloader2.util.LoginType;
 import de.whiledo.iliasdownloader2.util.ObjectDoInterfaceX;
 import de.whiledo.iliasdownloader2.util.SyncProgressListener;
+import de.whiledo.iliasdownloader2.util.TwoObjectsX;
+import de.whiledo.jtablex.FunctionsX;
+import de.whiledo.jtablex.JTableX;
+import de.whiledo.jtablex.ObjectDoInterface;
 import lombok.Getter;
 import lombok.val;
 
@@ -860,12 +860,12 @@ public class MainController implements SyncProgressListener, IliasSyncListener {
 			panel2.add(new JLabel("<html><b>Libraries and its licenses</b> (click to open)</html>"), BorderLayout.NORTH);
 
 			val list = Arrays.asList(
-					new TwoObjects<String, String>("ILIAS Downloader 2", ServiceFunctions.ILIASDOWNLOADER_WEBSITE_LICENSE),
-					new TwoObjects<String, String>("Java JDK 8", "http://www.oracle.com/technetwork/java/javase/terms/license/index.html"),
-					new TwoObjects<String, String>("Apache Commons IO und Apache Commons Codec", "apache_license.txt"),
-					new TwoObjects<String, String>("Project Lombok", "lombok_license.txt"),
-					new TwoObjects<String, String>("KSOAP2", "ksoap2_android.txt"),
-					new TwoObjects<String, String>("Simple XML Serialization", "apache_license.txt")					      
+					new TwoObjectsX<String, String>("ILIAS Downloader 2", ServiceFunctions.ILIASDOWNLOADER_WEBSITE_LICENSE),
+					new TwoObjectsX<String, String>("Java JDK 8", "http://www.oracle.com/technetwork/java/javase/terms/license/index.html"),
+					new TwoObjectsX<String, String>("Apache Commons IO und Apache Commons Codec", "apache_license.txt"),
+					new TwoObjectsX<String, String>("Project Lombok", "lombok_license.txt"),
+					new TwoObjectsX<String, String>("KSOAP2", "ksoap2_android.txt"),
+					new TwoObjectsX<String, String>("Simple XML Serialization", "apache_license.txt")					      
 					);
 			for(val lib : list){
 				link = new JLabel(lib.getObjectA());
@@ -946,7 +946,7 @@ public class MainController implements SyncProgressListener, IliasSyncListener {
 	}
 
 	protected void chooseServer() {
-		final TwoObjects<String, String> serverAndClientId = new TwoObjects<String, String>(iliasProperties.getIliasServerURL(), iliasProperties.getIliasClient());
+		final TwoObjectsX<String, String> serverAndClientId = new TwoObjectsX<String, String>(iliasProperties.getIliasServerURL(), iliasProperties.getIliasClient());
 		final boolean noConfigDoneYet = serverAndClientId.getObjectA() == null || serverAndClientId.getObjectA().trim().isEmpty();
 
 		final JPanel panel = new JPanel();
@@ -1125,15 +1125,15 @@ public class MainController implements SyncProgressListener, IliasSyncListener {
 		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
 
-		Collection<TwoObjects<String, String>> lookAndFeels = FunctionsX.asList(
-				new TwoObjects<String, String>("Metal", UIManager.getCrossPlatformLookAndFeelClassName()),
-				new TwoObjects<String, String>("Betriebssystem Standard", UIManager.getSystemLookAndFeelClassName()),
-				new TwoObjects<String, String>("Nimbus", NimbusLookAndFeel.class.getName())
+		Collection<TwoObjectsX<String, String>> lookAndFeels = FunctionsX.asList(
+				new TwoObjectsX<String, String>("Metal", UIManager.getCrossPlatformLookAndFeelClassName()),
+				new TwoObjectsX<String, String>("Betriebssystem Standard", UIManager.getSystemLookAndFeelClassName()),
+				new TwoObjectsX<String, String>("Nimbus", NimbusLookAndFeel.class.getName())
 				);
 
 		dialog.setLayout(new GridLayout(0, 1));
 		ButtonGroup b = new ButtonGroup();
-		for(final TwoObjects<String, String> lookAndFeel : lookAndFeels){
+		for(final TwoObjectsX<String, String> lookAndFeel : lookAndFeels){
 			JRadioButton rb = new JRadioButton(lookAndFeel.getObjectA());
 			if(iliasProperties.getLookAndFeel().equals(lookAndFeel.getObjectB())){
 				rb.setSelected(true);
