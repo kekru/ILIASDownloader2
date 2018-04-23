@@ -126,11 +126,13 @@ public class ILIASSoapService {
 		sessionId = soapResult.getText();// firstChild.getFirstChild().getTextContent();
 		String error = soapResult.getError();// firstChild.getChildNodes().getLength() >= 2 ? firstChild.getChildNodes().item(1).getTextContent() : null;
 
-		if(error != null && !error.trim().isEmpty()){
+		if(soapResult.isFaultCode() || (error != null && !error.trim().isEmpty())){
 			sessionId = null;
 
-			if(error.equals("Authentication failed.")){
+			if("Authentication failed.".equals(error)){
 				throw new IliasAuthenticationException("Authentication failed. Wrong username/password");
+			}else {
+				throw new IliasAuthenticationException("Authentication failed: " + error);
 			}
 		}else{
 			if(enableWebdavAuthentication){
