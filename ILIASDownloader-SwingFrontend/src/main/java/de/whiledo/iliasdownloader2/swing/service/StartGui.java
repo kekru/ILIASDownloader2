@@ -18,7 +18,7 @@ public class StartGui {
 
 			if(!containsNoUpdater){
 				try{
-//					WhiledoUpdater.updater(4, "iliasdownloader2");
+//					update
 				}catch(Exception e){
 					e.printStackTrace();
 				}

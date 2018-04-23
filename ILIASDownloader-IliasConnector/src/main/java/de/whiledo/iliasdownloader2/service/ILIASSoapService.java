@@ -12,9 +12,7 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.val;
+import javax.net.ssl.SSLException;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.SoapFault;
@@ -35,18 +33,9 @@ import de.whiledo.iliasdownloader2.xmlentities.exercise.XmlExercise;
 import de.whiledo.iliasdownloader2.xmlentities.file.XmlFileContent;
 import de.whiledo.iliasdownloader2.xmlentities.filetree.XmlObject;
 import de.whiledo.iliasdownloader2.xmlentities.filetree.XmlObjects;
-
-//import javax.xml.soap.MessageFactory;
-//import javax.xml.soap.MimeHeaders;
-//import javax.xml.soap.SOAPBody;
-//import javax.xml.soap.SOAPConnection;
-//import javax.xml.soap.SOAPConnectionFactory;
-//import javax.xml.soap.SOAPElement;
-//import javax.xml.soap.SOAPEnvelope;
-//import javax.xml.soap.SOAPException;
-//import javax.xml.soap.SOAPMessage;
-//import javax.xml.soap.SOAPPart;
-import javax.net.ssl.SSLException;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.val;
 
 public class ILIASSoapService {
 
@@ -95,13 +84,6 @@ public class ILIASSoapService {
 	 * @throws IliasAuthenticationException
 	 */
 	public void login(final String username, final String password, LoginType loginType, final boolean enableWebdavAuthentication){
-		//		try {
-		//			SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
-		//			soapConnection = soapConnectionFactory.createConnection();
-		//		} catch (SOAPException e) {
-		//			throw new IliasException(e);
-		//		}
-
 		webdavAuthenticationActive = false;
 		String methodName;
 		userId = -1;
@@ -113,8 +95,6 @@ public class ILIASSoapService {
 		default: throw new IliasAuthenticationException("loginType was "+loginType);
 		}
 
-		//		sessionId = sendSOAPMessageGetValueByPattern(methodName, "<sid xsi:type=\"xsd:string\">.*</sid>", "<[^>]+>", new TwoObjects("client", clientName), new TwoObjects("username", username), new TwoObjects("password", password));
-		//		Node firstChild = null;
 		SOAPResult soapResult = null;
 		try{
 			soapResult = sendSoapRequestGetSoapBody(methodName, new TwoObjectsX<String, String>("client", clientName), new TwoObjectsX<String, String>("username", username), new TwoObjectsX<String, String>("password", password));
@@ -126,11 +106,13 @@ public class ILIASSoapService {
 		sessionId = soapResult.getText();// firstChild.getFirstChild().getTextContent();
 		String error = soapResult.getError();// firstChild.getChildNodes().getLength() >= 2 ? firstChild.getChildNodes().item(1).getTextContent() : null;
 
-		if(error != null && !error.trim().isEmpty()){
+		if(soapResult.isFaultCode() || (error != null && !error.trim().isEmpty())){
 			sessionId = null;
 
-			if(error.equals("Authentication failed.")){
+			if("Authentication failed.".equals(error)){
 				throw new IliasAuthenticationException("Authentication failed. Wrong username/password");
+			}else {
+				throw new IliasAuthenticationException("Authentication failed: " + error);
 			}
 		}else{
 			if(enableWebdavAuthentication){
@@ -161,16 +143,9 @@ public class ILIASSoapService {
 	}
 
 	public boolean logout(){
-		//		return Boolean.parseBoolean(sendSOAPMessageGetValueByPattern("logout", "<success xsi:type=\"xsd:boolean\">.*</success>", "<[^>]+>", new TwoObjects("sid", sessionId)));
 		userId = -1;
 		boolean result = Boolean.parseBoolean(sendSoapRequest("logout", new TwoObjectsX<String, String>("sid", sessionId)));
-		//		try {
 		sessionId = null;
-		//			soapConnection.close();
-		//		} catch (SOAPException e) {
-		//			throw new IliasException(e);
-		//		}
-		//
 		return result;
 	}
 
@@ -198,17 +173,6 @@ public class ILIASSoapService {
 		String s = sendSoapRequest("getFileXML", new TwoObjectsX<String, String>("sid", sessionId), new TwoObjectsX<String, Long>("ref_id", refId), new TwoObjectsX<String, Integer>("attachment_mode", 1));
 
 		return parseXmlObject(s, XmlFileContent.class);
-		//		return new Base64InputStream(new ByteArrayInputStream(fileContent.getContent().getBytes()));
-
-
-		//		try {
-		//			val c = new CircularStream();
-		//			Base64.decodeToStream(s, c.getOutputStream()); 
-		//			c.getOutputStream().close();
-		//			return c.getInputStream();
-		//		} catch (IOException e) {
-		//			throw new IliasException(e);
-		//		}
 	}
 
 	public List<XmlObject> getCourseObjects(long refId){
@@ -234,12 +198,10 @@ public class ILIASSoapService {
 
 
 	public long getRefIdByObjId(long objId){
-		//		return Long.parseLong(sendSOAPMessageGetValueByPattern("getRefIdsByObjId", "<item xsi:type=\"xsd:int\">\\d*</item>", "\\D*", new TwoObjects("sid", sessionId), new TwoObjects("obj_id", objId)));
 		return Long.parseLong(sendSoapRequest("getRefIdsByObjId", new TwoObjectsX<String, String>("sid", sessionId), new TwoObjectsX<String, Long>("obj_id", objId)));
 	}
 
 	public long getUserId(){
-		//		return Long.parseLong(sendSoapRequest("getUserIdBySid", "<usr_id xsi:type=\"xsd:int\">\\d*</usr_id>", "\\D*", new TwoObjects("sid", sessionId)));
 		return userId != -1 ? userId : (userId = Long.parseLong(sendSoapRequest("getUserIdBySid", new TwoObjectsX<String, String>("sid", sessionId))));
 	}
 
@@ -268,17 +230,11 @@ public class ILIASSoapService {
 
 	
 	private String sendSoapRequest(String soapMethodName, TwoObjectsX<?, ?>... mapNameToValue) {
-		String s = sendSoapRequestGetSoapBody(soapMethodName, mapNameToValue).getText();
-		//		log.debug("Received Payload Content: " + s);
-		return s;
+		return sendSoapRequestGetSoapBody(soapMethodName, mapNameToValue).getText();
 	}
 
 	private SOAPResult sendSoapRequestGetSoapBody(String soapMethodName, TwoObjectsX<?, ?>... mapNameToValue) {
 		SoapObject soapObject = new SoapObject("http://schemas.xmlsoap.org/soap/envelope/", soapMethodName);
-		//		soapObject.
-		//		soapObject.addProperty(documentIdsPropertyInfo);
-		//		soapObject.addProperty("pluginType", "another string");
-		//		soapObject.addProperty("xmlConfiguration", "next string");
 
 		for(val nameToValue : mapNameToValue){
 			PropertyInfo propertyInfo = new PropertyInfo();
@@ -289,11 +245,8 @@ public class ILIASSoapService {
 		}
 
 		SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-		//		soapEnvelope.dotNet = true;
 		soapEnvelope.setOutputSoapObject(soapObject);
 
-		//         soapEnvelope.addMapping(NAMESPACE, "documentIds", new DocumentIDs().getClass());
-		
 		SOAPResult result = new SOAPResult();
 		result.setFaultCode(false);
 		
