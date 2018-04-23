@@ -1,6 +1,7 @@
 package de.whiledo.iliasdownloader2.swing.service;
 
-import de.adesso.adzubix.util.FunctionsX;
+import java.util.Arrays;
+
 import de.whiledo.iliasdownloader2.syncrunner.service.StartSyncRunner;
 
 public class StartGui {
@@ -9,7 +10,7 @@ public class StartGui {
 
 	public static void main(String[] args) throws Exception {
 
-		boolean containsNoUpdater = FunctionsX.asList(args).contains(NO_UPDATER);
+		boolean containsNoUpdater = Arrays.asList(args).contains(NO_UPDATER);
 
 		if(!containsNoUpdater && args.length > 0){
 			StartSyncRunner.main(args);

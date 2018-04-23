@@ -9,11 +9,11 @@ import java.awt.event.MouseEvent;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
 
+import de.whiledo.jtablex.JTableX;
+import de.whiledo.jtablex.ModelInfo;
+import de.whiledo.jtablex.TableModelAndRendererX;
 import lombok.Getter;
 import lombok.Setter;
-import de.adesso.adzubix.jtablex.JTableX;
-import de.adesso.adzubix.jtablex.ModelInfo;
-import de.adesso.adzubix.jtablex.TableModelAndRendererX;
 
 @ModelInfo(tableHeadlines={"", "Kurs", "Kurs Id", "Passwort"}, columnClasses={boolean.class, String.class, long.class, String.class})
 public class CourseTableModel extends TableModelAndRendererX<Course> {
