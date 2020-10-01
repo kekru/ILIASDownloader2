@@ -13,6 +13,8 @@ The project is divided into three parts.
 
 # Runnable App  
 You find the runnable java app [here](http://whiledo.de/index.php?p=iliasdownloader2) (german).  
+The latest version of master-Branch is available at [JitPack](https://jitpack.io/com/github/kekru/ILIASDownloader2/ILIASDownloader-SwingFrontend/master-SNAPSHOT/ILIASDownloader-SwingFrontend-master-SNAPSHOT.jar).  
+
 To use ILIASDownloader2 on commandline only, run `java -jar iliasdownloader.jar help` for more information.  
 There is also an Android app [here](https://play.google.com/store/apps/details?id=wennierfiete.iliasdownloader) (german).  
 
